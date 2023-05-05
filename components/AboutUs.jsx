@@ -15,7 +15,7 @@ const TestimonialContent = (props) => {
   return (
     <Stack
       bg={useColorModeValue("white", "gray.800")}
-      h={200}
+      h={220}
       boxShadow={"lg"}
       p={8}
       rounded={"xl"}

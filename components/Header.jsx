@@ -57,7 +57,7 @@ export default function Header() {
           />
           <HStack spacing={8} alignItems={"center"}>
             <Box>
-              <Image src="./logo.png" w={12} h={12} />
+              <Image src="./logo.png" w={12} h={12} alt="logo" />
             </Box>
             <HStack
               as={"nav"}

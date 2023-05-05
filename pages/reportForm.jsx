@@ -1,5 +1,6 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import PremiumModal from "../components/modal/PremiumModal";
 import {
   Form,
   FormControl,
@@ -12,16 +13,28 @@ import {
   Center,
   Box,
 } from "@chakra-ui/react";
+import { useState } from "react";
 import { MdOutlineUploadFile } from "react-icons/md";
-import { useReportStore } from "../stores/useReportStore";
+import { useReportStore, usePremiumUserStore } from "../stores";
 
 export default function ReportForm() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [trialUsed, setTrialUsed] = usePremiumUserStore((state) => [
+    state.trialUsed,
+    state.setTrialUsed,
+  ]);
   const [inputFields, setReportData] = useReportStore((state) => [
     state.inputFields,
     state.setReportData,
   ]);
 
   function handleSubmit() {
+    if (!trialUsed) {
+      setIsModalOpen(true);
+      return;
+    } else {
+      setTrialUsed(true);
+    }
     const data = {};
     // foreach id of inputFields.label == element id, get value and return
     inputFields.forEach((element) => {
@@ -29,11 +42,16 @@ export default function ReportForm() {
       data[element.id] = val;
     });
     setReportData(data);
+    window.location.href = "/report";
   }
 
   return (
     <>
       <Header />
+      <PremiumModal
+        isOpen={isModalOpen}
+        isClose={() => setIsModalOpen(false)}
+      />
       <Box p={15}>
         <Center>
           <Grid

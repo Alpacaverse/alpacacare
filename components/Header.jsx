@@ -9,6 +9,7 @@ import {
   Menu,
   MenuButton,
   MenuList,
+  Image,
   MenuItem,
   MenuDivider,
   useDisclosure,
@@ -16,8 +17,14 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
+import UserProfile from "./UserProfile";
 
-const Links = ["Dashboard", "Projects", "Team"];
+const Links = [
+  { page_name: "Dashboard", source: "./dashboard" },
+  { page_name: "Report Generator", source: "./report" },
+  { page_name: "Premium" , source:"./premium"},
+  { page_name: "FAQ", source: "./faq"}
+];
 
 const NavLink = (props) => (
   <Link
@@ -26,20 +33,22 @@ const NavLink = (props) => (
     rounded={"md"}
     _hover={{
       textDecoration: "none",
-      bg: useColorModeValue("gray.200", "gray.700"),
+      bg: useColorModeValue("orange.300", "orange.300"),
     }}
-    href={"#"}
+    href={props.source}
   >
-    {props.children}
+    {props.page_name}
   </Link>
 );
+
+
 
 export default function Header() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <>
-      <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
+      <Box bg={useColorModeValue("orange.400", "orange.400")} px={4}>
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <IconButton
             size={"md"}
@@ -49,14 +58,16 @@ export default function Header() {
             onClick={isOpen ? onClose : onOpen}
           />
           <HStack spacing={8} alignItems={"center"}>
-            <Box>Logo</Box>
+            <Box>
+              <Image src="./logo.png" w={12} h={12} />
+            </Box>
             <HStack
               as={"nav"}
               spacing={4}
               display={{ base: "none", md: "flex" }}
             >
               {Links.map((link) => (
-                <NavLink key={link}>{link}</NavLink>
+                <NavLink key={link.page_name} page_name={link.page_name} source={link.source}/>
               ))}
             </HStack>
           </HStack>
@@ -68,19 +79,19 @@ export default function Header() {
                 variant={"link"}
                 cursor={"pointer"}
                 minW={0}
+                // onClick={handleClick}
               >
                 <Avatar
                   size={"sm"}
                   src={
-                    "https://images.unsplash.com/photo-1493666438817-866a91353ca9?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9"
+                    "https://images.unsplash.com/photo-1520810627419-35e362c5dc07?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&ixid=eyJhcHBfaWQiOjE3Nzg0fQ"
                   }
                 />
               </MenuButton>
               <MenuList>
-                <MenuItem>Link 1</MenuItem>
-                <MenuItem>Link 2</MenuItem>
-                <MenuDivider />
-                <MenuItem>Link 3</MenuItem>
+                <MenuItem>
+                  <UserProfile />
+                </MenuItem>
               </MenuList>
             </Menu>
           </Flex>
@@ -90,14 +101,12 @@ export default function Header() {
           <Box pb={4} display={{ md: "none" }}>
             <Stack as={"nav"} spacing={4}>
               {Links.map((link) => (
-                <NavLink key={link}>{link}</NavLink>
+                <NavLink key={link.page_name} page_name={link.page_name} source={link.source}/>
               ))}
             </Stack>
           </Box>
         ) : null}
       </Box>
-
-      <Box p={4}>Main Content Here</Box>
     </>
   );
 }

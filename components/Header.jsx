@@ -21,9 +21,9 @@ import UserProfile from "./UserProfile";
 
 const Links = [
   { page_name: "Dashboard", source: "./dashboard" },
-  { page_name: "Report Generator", source: "./report" },
-  { page_name: "Premium" , source:"./premium"},
-  { page_name: "FAQ", source: "./faq"}
+  { page_name: "Report Generator", source: "./reportForm" },
+  { page_name: "Premium", source: "./premium" },
+  { page_name: "FAQ", source: "./faq" },
 ];
 
 const NavLink = (props) => (
@@ -40,8 +40,6 @@ const NavLink = (props) => (
     {props.page_name}
   </Link>
 );
-
-
 
 export default function Header() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -67,7 +65,11 @@ export default function Header() {
               display={{ base: "none", md: "flex" }}
             >
               {Links.map((link) => (
-                <NavLink key={link.page_name} page_name={link.page_name} source={link.source}/>
+                <NavLink
+                  key={link.page_name}
+                  page_name={link.page_name}
+                  source={link.source}
+                />
               ))}
             </HStack>
           </HStack>
@@ -101,7 +103,11 @@ export default function Header() {
           <Box pb={4} display={{ md: "none" }}>
             <Stack as={"nav"} spacing={4}>
               {Links.map((link) => (
-                <NavLink key={link.page_name} page_name={link.page_name} source={link.source}/>
+                <NavLink
+                  key={link.page_name}
+                  page_name={link.page_name}
+                  source={link.source}
+                />
               ))}
             </Stack>
           </Box>

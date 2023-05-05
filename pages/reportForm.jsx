@@ -1,5 +1,6 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import PremiumModal from "../components/modal/PremiumModal";
 import {
   Form,
   FormControl,
@@ -12,16 +13,49 @@ import {
   Center,
   Box,
 } from "@chakra-ui/react";
+import { useState, useRef, useEffect } from "react";
 import { MdOutlineUploadFile } from "react-icons/md";
-import { useReportStore } from "../stores/useReportStore";
+import { useReportStore, usePremiumUserStore } from "../stores";
+const utils = require("../lib/utils");
 
 export default function ReportForm() {
-  const [inputFields, setReportData] = useReportStore((state) => [
-    state.inputFields,
-    state.setReportData,
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [trialUsed, setTrialUsed] = usePremiumUserStore((state) => [
+    state.trialUsed,
+    state.setTrialUsed,
   ]);
+  const [inputFields, setReportData, fileInput, setFileInput] = useReportStore(
+    (state) => [
+      state.inputFields,
+      state.setReportData,
+      state.fileInput,
+      state.setFileInput,
+    ]
+  );
+
+  const fileInputRef = useRef(null);
+
+  const handleButtonClick = () => {
+    fileInputRef.current.click();
+  };
+
+  const handleFileInputChange = (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsText(file, "UTF-8");
+    reader.onload = (evt) => {
+      const data = JSON.parse(evt.target.result);
+      setFileInput(data);
+    };
+  };
 
   function handleSubmit() {
+    if (trialUsed) {
+      setIsModalOpen(true);
+      return;
+    } else {
+      setTrialUsed(true);
+    }
     const data = {};
     // foreach id of inputFields.label == element id, get value and return
     inputFields.forEach((element) => {
@@ -29,11 +63,24 @@ export default function ReportForm() {
       data[element.id] = val;
     });
     setReportData(data);
+    window.location.href = "/report";
   }
+
+  useEffect(() => {
+    if (fileInput) {
+      for (const key in fileInput) {
+        document.getElementById(key).value = fileInput[key];
+      }
+    }
+  }, [fileInput]);
 
   return (
     <>
       <Header />
+      <PremiumModal
+        isOpen={isModalOpen}
+        isClose={() => setIsModalOpen(false)}
+      />
       <Box p={15}>
         <Center>
           <Grid
@@ -56,9 +103,17 @@ export default function ReportForm() {
                 bg: "orange.300",
               }}
               rightIcon={<MdOutlineUploadFile />}
+              onClick={handleButtonClick}
             >
               Upload Report
+              <input
+                type="file"
+                ref={fileInputRef}
+                onChange={handleFileInputChange}
+                style={{ display: "none" }}
+              />
             </Button>
+
             {inputFields.map((field) => {
               return field.options ? (
                 <FormControl key={field.id} id={field.id}>

@@ -50,31 +50,31 @@ export default function PremiumModal(props) {
             <Box py={12}>
               <VStack spacing={2} textAlign="center">
                 <Heading as="h1" fontSize="4xl" color={"black"}>
-                  Plans that fit your need
+                  Premium Plans That Care For You
                 </Heading>
                 <Text fontSize="lg" color={"orange.400"}>
-                  Start with 14-day free trial. No credit card needed. Cancel at
-                  anytime.
+                  Enjoy our services? Get premium to enjoy more! We offer the
+                  best package plans available.
                 </Text>
               </VStack>
               <Stack
                 direction={{ base: "column", md: "row" }}
                 textAlign="center"
                 justify="center"
-                spacing={{ base: 4, lg: 10 }}
-                py={10}
+                spacing={{ base: 4, lg: 6 }}
+                p={10}
               >
                 <PriceWrapper>
                   <Box py={4} px={12} color={"black"}>
                     <Text fontWeight="500" fontSize="2xl">
-                      Hobby
+                      Basic
                     </Text>
                     <HStack justifyContent="center">
                       <Text fontSize="3xl" fontWeight="600">
-                        $
+                        RM
                       </Text>
                       <Text fontSize="5xl" fontWeight="900">
-                        79
+                        200
                       </Text>
                       <Text fontSize="3xl" color="orange.400">
                         /month
@@ -93,16 +93,16 @@ export default function PremiumModal(props) {
                       color={"gray.800"}
                     >
                       <ListItem>
-                        <ListIcon as={FaCheckCircle} color="green.500" />
-                        unlimited build minutes
+                        <ListIcon as={FaCheckCircle} color="green.500" />2
+                        doctor appointments /month
                       </ListItem>
                       <ListItem>
                         <ListIcon as={FaCheckCircle} color="green.500" />
-                        Lorem, ipsum dolor.
+                        Unlimited GA & MOD Reports
                       </ListItem>
                       <ListItem>
                         <ListIcon as={FaCheckCircle} color="green.500" />
-                        5TB Lorem, ipsum dolor.
+                        Ad-free experience
                       </ListItem>
                     </List>
                     <Box w="80%" pt={7}>
@@ -141,14 +141,14 @@ export default function PremiumModal(props) {
                     </Box>
                     <Box py={4} px={12} color={"black"}>
                       <Text fontWeight="500" fontSize="2xl">
-                        Growth
+                        All Around Diet
                       </Text>
                       <HStack justifyContent="center">
                         <Text fontSize="3xl" fontWeight="600">
-                          $
+                          RM
                         </Text>
                         <Text fontSize="5xl" fontWeight="900">
-                          149
+                          350
                         </Text>
                         <Text fontSize="3xl" color="orange.400">
                           /month
@@ -167,24 +167,24 @@ export default function PremiumModal(props) {
                         color={"gray.800"}
                       >
                         <ListItem>
-                          <ListIcon as={FaCheckCircle} color="green.500" />
-                          unlimited build minutes
+                          <ListIcon as={FaCheckCircle} color="green.500" />2
+                          doctor appointments /month
                         </ListItem>
                         <ListItem>
                           <ListIcon as={FaCheckCircle} color="green.500" />
-                          Lorem, ipsum dolor.
+                          Unlimited GA & MOD Reports
                         </ListItem>
                         <ListItem>
                           <ListIcon as={FaCheckCircle} color="green.500" />
-                          5TB Lorem, ipsum dolor.
+                          Ad-free experience
                         </ListItem>
                         <ListItem>
-                          <ListIcon as={FaCheckCircle} color="green.500" />
-                          5TB Lorem, ipsum dolor.
+                          <ListIcon as={FaCheckCircle} color="green.500" />3
+                          Ready-to-eat meals a day
                         </ListItem>
                         <ListItem>
-                          <ListIcon as={FaCheckCircle} color="green.500" />
-                          5TB Lorem, ipsum dolor.
+                          <ListIcon as={FaCheckCircle} color="green.500" />1
+                          toddler accessory per month
                         </ListItem>
                       </List>
                       <Box w="80%" pt={7}>
@@ -203,14 +203,14 @@ export default function PremiumModal(props) {
                 <PriceWrapper>
                   <Box py={4} px={12} color={"black"}>
                     <Text fontWeight="500" fontSize="2xl">
-                      Scale
+                      Consultation
                     </Text>
                     <HStack justifyContent="center">
                       <Text fontSize="3xl" fontWeight="600">
-                        $
+                        RM
                       </Text>
                       <Text fontSize="5xl" fontWeight="900">
-                        349
+                        380
                       </Text>
                       <Text fontSize="3xl" color="orange.400">
                         /month
@@ -229,16 +229,16 @@ export default function PremiumModal(props) {
                       color={"gray.800"}
                     >
                       <ListItem>
-                        <ListIcon as={FaCheckCircle} color="green.500" />
-                        unlimited build minutes
+                        <ListIcon as={FaCheckCircle} color="green.500" />4
+                        doctor appointments /month
                       </ListItem>
                       <ListItem>
                         <ListIcon as={FaCheckCircle} color="green.500" />
-                        Lorem, ipsum dolor.
+                        Unlimited GA & MOD Reports
                       </ListItem>
                       <ListItem>
                         <ListIcon as={FaCheckCircle} color="green.500" />
-                        5TB Lorem, ipsum dolor.
+                        Ad-free experience
                       </ListItem>
                     </List>
                     <Box w="80%" pt={7}>

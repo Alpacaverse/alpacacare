@@ -13,9 +13,10 @@ import {
   Center,
   Box,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { MdOutlineUploadFile } from "react-icons/md";
 import { useReportStore, usePremiumUserStore } from "../stores";
+const utils = require("../lib/utils");
 
 export default function ReportForm() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -23,13 +24,33 @@ export default function ReportForm() {
     state.trialUsed,
     state.setTrialUsed,
   ]);
-  const [inputFields, setReportData] = useReportStore((state) => [
-    state.inputFields,
-    state.setReportData,
-  ]);
+  const [inputFields, setReportData, fileInput, setFileInput] = useReportStore(
+    (state) => [
+      state.inputFields,
+      state.setReportData,
+      state.fileInput,
+      state.setFileInput,
+    ]
+  );
+
+  const fileInputRef = useRef(null);
+
+  const handleButtonClick = () => {
+    fileInputRef.current.click();
+  };
+
+  const handleFileInputChange = (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsText(file, "UTF-8");
+    reader.onload = (evt) => {
+      const data = JSON.parse(evt.target.result);
+      setFileInput(data);
+    };
+  };
 
   function handleSubmit() {
-    if (!trialUsed) {
+    if (trialUsed) {
       setIsModalOpen(true);
       return;
     } else {
@@ -44,6 +65,14 @@ export default function ReportForm() {
     setReportData(data);
     window.location.href = "/report";
   }
+
+  useEffect(() => {
+    if (fileInput) {
+      for (const key in fileInput) {
+        document.getElementById(key).value = fileInput[key];
+      }
+    }
+  }, [fileInput]);
 
   return (
     <>
@@ -74,9 +103,17 @@ export default function ReportForm() {
                 bg: "orange.300",
               }}
               rightIcon={<MdOutlineUploadFile />}
+              onClick={handleButtonClick}
             >
               Upload Report
+              <input
+                type="file"
+                ref={fileInputRef}
+                onChange={handleFileInputChange}
+                style={{ display: "none" }}
+              />
             </Button>
+
             {inputFields.map((field) => {
               return field.options ? (
                 <FormControl key={field.id} id={field.id}>

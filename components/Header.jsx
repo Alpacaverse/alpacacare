@@ -17,7 +17,6 @@ import {
   useColorModeValue,
   Stack,
 } from "@chakra-ui/react";
-import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import UserProfile from "./UserProfile";
 import PremiumModal from "./modal/PremiumModal";
 import { useState } from "react";
@@ -60,6 +59,11 @@ export default function Header() {
               spacing={10}
               display={{ base: "none", md: "flex" }}
             >
+              <Link href="./" passHref>
+                <Menu>
+                  <MenuButton fontWeight={"bold"}>Home</MenuButton>
+                </Menu>
+              </Link>
               <Menu>
                 <MenuButton fontWeight={"bold"}>Health Assessment</MenuButton>
                 <MenuList>

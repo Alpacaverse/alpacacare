@@ -143,7 +143,7 @@ export default function Report() {
             that we offer!
           </Heading>
           <Text size="md" fontWeight={"semibold"}>
-            Monthly subscription is available too.
+            Monthly subscription is available.
           </Text>
           <Stack direction={"row"}>
             {data.map((product, index) => (

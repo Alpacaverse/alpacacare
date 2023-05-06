@@ -160,8 +160,8 @@ export default function Report() {
           </Stack>
         </Box>
       </Center>
-      <Footer />
       <ChatBotIcon />
+      <Footer />
     </>
   );
 }

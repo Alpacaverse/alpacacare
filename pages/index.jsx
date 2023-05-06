@@ -11,8 +11,8 @@ export default function Home() {
       <Header />
       <Landing />
       <AboutUs />
-      <Footer />
       <ChatBotIcon />
+      <Footer />
     </>
   );
 }

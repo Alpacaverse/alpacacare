@@ -52,16 +52,11 @@ const data = [
 export default function Report() {
   const profilesData = profiles();
   const router = useRouter();
-  const { ga, mod } = router.query;
-
-  const G = parseInt(ga) === 1 ? "SGA" : "AGA";
-  const birth = parseInt(mod) === 1 ? "CSection" : "Vaginal";
-
   const riskData = riskIndi();
 
-  const { risk } = router.query;
+  const { score } = router.query;
   const riskLevel =
-    parseInt(risk) === 0 ? "Low" : parseInt(risk) === 1 ? "Medium" : "High";
+    parseInt(score) === 0 ? "Low" : parseInt(score) === 1 ? "Medium" : "High";
 
   return (
     <>
@@ -90,6 +85,7 @@ export default function Report() {
               objectFit="cover"
               maxW={{ base: "100%", sm: "500px" }}
               src={riskData[riskLevel]["img"]}
+              alt={""}
             />
 
             <Stack>
@@ -104,7 +100,7 @@ export default function Report() {
                   Lifestyle Recommendation
                 </Heading>
                 <Text color="orange.600" fontSize="md">
-                  {profilesData[birth]["advice"]["lifestyle"]}
+                  {riskData[riskLevel]["advice"]["lifestyle"]}
                 </Text>
                 <Divider
                   my="5"
@@ -114,7 +110,7 @@ export default function Report() {
                   Diet Recommendation
                 </Heading>
                 <Text color="orange.600" fontSize="md">
-                  {profilesData[birth]["advice"]["diet"]}
+                  {riskData[riskLevel]["advice"]["diet"]}
                 </Text>
               </CardBody>
 
@@ -149,8 +145,8 @@ export default function Report() {
           </Stack>
         </Box>
       </Center>
+      <ChatBotIcon />
       <Footer />
-      <ChatBotIcon />;
     </>
   );
 }

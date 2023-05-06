@@ -20,7 +20,7 @@ export const useMaternalStore = create((set) => ({
     },
     {
       id: "body_temp",
-      label: "Body Temperature",
+      label: "Body Temperature (F)",
     },
     {
       id: "heart_rate",

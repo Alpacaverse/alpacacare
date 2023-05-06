@@ -20,10 +20,9 @@ import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import UserProfile from "./UserProfile";
 
 const Links = [
-  { page_name: "Dashboard", source: "./dashboard" },
-  { page_name: "Report Generator", source: "./reportForm" },
+  // { page_name: "Dashboard", source: "./dashboard" },
+  { page_name: "Health Assessment", source: "./healthAssesment" },
   { page_name: "Premium", source: "./premium" },
-  { page_name: "FAQ", source: "./faq" },
 ];
 
 const NavLink = (props) => (

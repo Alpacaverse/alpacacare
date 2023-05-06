@@ -15,11 +15,7 @@ import {
 } from "@chakra-ui/react";
 import { useState, useRef, useEffect } from "react";
 import { MdOutlineUploadFile } from "react-icons/md";
-import {
-  useReportStore,
-  usePremiumUserStore,
-  useModelOutputStore,
-} from "../stores";
+import { useReportStore, usePremiumUserStore } from "../stores";
 const apiHelper = require("../lib/apiHelper");
 
 export default function ReportForm() {
@@ -29,9 +25,6 @@ export default function ReportForm() {
     state.trialUsed,
     state.setTrialUsed,
   ]);
-  const [gaData, modData, setGaData, setModData] = useModelOutputStore(
-    (state) => [state.gaData, state.modData, state.setGaData, state.setModData]
-  );
   const [
     inputFields,
     setReportData,
@@ -89,23 +82,20 @@ export default function ReportForm() {
   }, [fileInput]);
 
   useEffect(() => {
+    let gaData;
+    let modData;
     if (formattedReportData) {
       apiHelper
         .gestationalAgePrediction(formattedReportData)
-        .then((res) => setGaData(res.prediction));
-
-      apiHelper
-        .deliveryModePrediction(formattedReportData)
-        .then((res) => setModData(res.prediction));
+        .then((res) => (gaData = res.prediction))
+        .then(() => apiHelper.deliveryModePrediction(formattedReportData))
+        .then((res) => (modData = res.prediction))
+        .then(() => setIsLoading(false))
+        .then(
+          () => (window.location.href = `/report?ga=${gaData}&mod=${modData}`)
+        );
     }
-  }, [formattedReportData, setGaData, setModData]);
-
-  useEffect(() => {
-    if (gaData || modData) {
-      setIsLoading(false);
-      window.location.href = "/report";
-    }
-  }, [gaData, modData]);
+  }, [formattedReportData]);
 
   return (
     <>

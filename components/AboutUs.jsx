@@ -14,7 +14,7 @@ const Testimonial = (props) => {
 const TestimonialContent = (props) => {
   return (
     <Stack
-      bg={useColorModeValue("white", "gray.800")}
+      bg={useColorModeValue("gray.100", "gray.800")}
       h={220}
       boxShadow={"lg"}
       p={8}
@@ -71,7 +71,7 @@ const TestimonialText = (props) => {
 
 export default function AboutUs() {
   return (
-    <Box bg={useColorModeValue("gray.100", "gray.700")}>
+    <Box bg={useColorModeValue("white", "gray.700")}>
       <Container maxW={"7xl"} py={16} as={Stack} spacing={12}>
         <Stack
           spacing={5}

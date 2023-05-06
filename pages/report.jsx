@@ -73,7 +73,7 @@ export default function Report() {
             Mode of Delivery (MOD) & Gestational Age (GA) Report
           </Text>
           <HStack spacing="4" alignItems={"center"} justifyContent={"center"}>
-            <Card maxW="md" h={600} borderWidth={1.5} borderColor={"gray.200"}>
+            <Card maxW="md" h={700} borderWidth={1.5} borderColor={"gray.200"}>
               <CardBody>
                 <Image
                   w={472}
@@ -93,10 +93,17 @@ export default function Report() {
                   <Text color="orange.500" fontSize="md">
                     {profilesData[G]["advice"]["lifestyle"]}
                   </Text>
+                  <Text
+                    color="orange.500"
+                    fontSize="md"
+                    fontWeight={"semibold"}
+                  >
+                    {profilesData[G]["advice"]["diet"]}
+                  </Text>
                 </Stack>
               </CardBody>
             </Card>
-            <Card maxW="md" h={600} borderWidth={1.5} borderColor={"gray.200"}>
+            <Card maxW="md" h={700} borderWidth={1.5} borderColor={"gray.200"}>
               <CardBody>
                 <Image
                   w={472}
@@ -116,6 +123,13 @@ export default function Report() {
                   <Text color="orange.600" fontSize="md">
                     {profilesData[birth]["advice"]["lifestyle"]}
                   </Text>
+                  <Text
+                    color="orange.600"
+                    fontSize="md"
+                    fontWeight={"semibold"}
+                  >
+                    {profilesData[birth]["advice"]["diet"]}
+                  </Text>
                 </Stack>
               </CardBody>
             </Card>
@@ -125,10 +139,10 @@ export default function Report() {
               Recommended Videos
             </Heading>
             <Grid templateColumns="repeat(2, 1fr)" gap={5}>
-              <AspectRatio maxW="560px" maxH="400px" ratio={1}>
+              <AspectRatio maxW="750px" maxH="400px" ratio={1}>
                 <iframe src={profilesData[G]["resources"]} allowFullScreen />
               </AspectRatio>
-              <AspectRatio maxW="560px" maxH="400px" ratio={1}>
+              <AspectRatio maxW="750px" maxH="400px" ratio={1}>
                 <iframe
                   src={profilesData[birth]["resources"]}
                   allowFullScreen
@@ -137,11 +151,11 @@ export default function Report() {
             </Grid>
           </Box>
           <Heading size="xl" my={5}>
-            Here are some{" "}
+            Here is{" "}
             <Box as={"span"} color={"orange.400"}>
-              packaged meals
+              food we recommend
             </Box>{" "}
-            that we offer!
+            based on your data!
           </Heading>
           <Text size="md" fontWeight={"semibold"}>
             Monthly subscription is available.

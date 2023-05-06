@@ -16,7 +16,7 @@ import {
 export default function Landing() {
   return (
     <>
-      <Box bg={useColorModeValue("gray.100", "gray.700")}>
+      <Box bg={useColorModeValue("white", "gray.700")}>
         <Head>
           <Link
             href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap"
@@ -31,7 +31,13 @@ export default function Landing() {
             spacing={{ base: 8, md: 14 }}
             py={{ base: 15, md: 32 }}
           >
-            <Image alignSelf={"center"} src="./baby.png" w={300} h={250} />
+            <Image
+              alignSelf={"center"}
+              src="./baby.png"
+              w={300}
+              h={250}
+              alt={""}
+            />
             <Heading
               fontWeight={600}
               fontSize={{ base: "2xl", sm: "4xl", md: "6xl" }}

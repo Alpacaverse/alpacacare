@@ -1,5 +1,6 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import ProductCard from "../components/ProductCard";
 import {
   Center,
   Grid,
@@ -19,6 +20,30 @@ import {
 } from "@chakra-ui/react";
 import { profiles } from "../lib/profiles";
 import { useRouter } from "next/router";
+
+const data = [
+  {
+    isRecommended: true,
+    imageURL: "/chicken_salad_bowl.jpg",
+    name: "Chicken Salad Bowl",
+    price: 15.0,
+    tags: ["Vegetables", "Chicken", "Corn"],
+  },
+  {
+    isRecommended: false,
+    imageURL: "/japanese_salad_bowl.jpg",
+    name: "Japanese Salad Bowl",
+    price: 17.5,
+    tags: ["Edamame", "Sweet Corn", "Mushrooms"],
+  },
+  {
+    isRecommended: true,
+    imageURL: "/steak_salad_bowl.jpg",
+    name: "Steak Salad Bowl",
+    price: 17.0,
+    tags: ["Sirloin Steak", "Mango", "Mint"],
+  },
+];
 
 export default function Report() {
   const profilesData = profiles();
@@ -110,33 +135,28 @@ export default function Report() {
               </AspectRatio>
             </Grid>
           </Box>
-          <Heading size="md" mb={5} mt={5}>
-            Diet Plan
+          <Heading size="xl" my={5}>
+            Here are some{" "}
+            <Box as={"span"} color={"orange.400"}>
+              packaged meals
+            </Box>{" "}
+            that we offer!
           </Heading>
-          <Card
-            direction={{ base: "column", sm: "row" }}
-            overflow="hidden"
-            variant="outline"
-          >
-            <Image
-              objectFit="cover"
-              maxW={{ base: "100%", sm: "400px" }}
-              src={"./healthy-diet.jpg"}
-              alt={"Healthy Diet"}
-            />
-
-            <Stack>
-              <CardBody>
-                <Heading size="md">{profilesData[G]["title"]}</Heading>
-                <Text py="2">{profilesData[G]["description"]}</Text>
-              </CardBody>
-              <CardFooter>
-                <Button variant="solid" colorScheme="blue">
-                  Grab Your Diet Plan now!
-                </Button>
-              </CardFooter>
-            </Stack>
-          </Card>
+          <Text size="md" fontWeight={"semibold"}>
+            Monthly subscription is available too.
+          </Text>
+          <Stack direction={"row"}>
+            {data.map((product, index) => (
+              <ProductCard
+                key={product.imageURL + index}
+                isRecommended={product.isRecommended}
+                imageURL={product.imageURL}
+                name={product.name}
+                price={product.price}
+                tags={product.tags}
+              />
+            ))}
+          </Stack>
         </Box>
       </Center>
       <Footer />

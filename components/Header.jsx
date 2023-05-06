@@ -21,26 +21,6 @@ import UserProfile from "./UserProfile";
 import PremiumModal from "./modal/PremiumModal";
 import { useState } from "react";
 
-const Links = [
-  // { page_name: "Dashboard", source: "./dashboard" },
-  { page_name: "Report Generator", source: "./reportForm" },
-];
-
-const NavLink = (props) => (
-  <Link
-    px={2}
-    py={1}
-    rounded={"md"}
-    _hover={{
-      textDecoration: "none",
-      bg: useColorModeValue("orange.300", "orange.300"),
-    }}
-    href={props.source}
-  >
-    {props.page_name}
-  </Link>
-);
-
 export default function Header() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -59,7 +39,7 @@ export default function Header() {
               spacing={10}
               display={{ base: "none", md: "flex" }}
             >
-              <Link href="./" passHref>
+              <Link href="./">
                 <Menu>
                   <MenuButton fontWeight={"bold"}>Home</MenuButton>
                 </Menu>
@@ -75,7 +55,7 @@ export default function Header() {
                   </MenuItem>
                 </MenuList>
               </Menu>
-              <Link href="./services" passHref>
+              <Link href="./services">
                 <Menu>
                   <MenuButton fontWeight={"bold"}>Services</MenuButton>
                 </Menu>
@@ -97,7 +77,6 @@ export default function Header() {
               variant={"link"}
               cursor={"pointer"}
               minW={0}
-              // onClick={handleClick}
             >
               <Avatar
                 size={"md"}

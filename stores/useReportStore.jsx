@@ -121,10 +121,10 @@ export const useReportStore = create((set) => ({
   ],
   fileInput: null,
   reportData: {},
-  formattedReportData: [],
+  formattedReportData: null,
   setFileInput: (x) => set({ fileInput: x }),
   setReportData: (x) => {
     set({ reportData: x });
-    set({ formattedData: utils.formatReportData(x) });
+    set({ formattedReportData: utils.formatReportData(x) });
   },
 }));

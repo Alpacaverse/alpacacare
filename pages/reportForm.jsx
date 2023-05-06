@@ -1,5 +1,6 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import ChatBotIcon from "../components/ChatbotIcon";
 import {
   Form,
   FormControl,
@@ -162,6 +163,7 @@ export default function ReportForm() {
         </Center>
       </Box>
       <Footer />
+      <ChatBotIcon />
     </>
   );
 }

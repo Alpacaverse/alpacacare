@@ -10,7 +10,7 @@ import {
   useColorModeValue,
   createIcon,
   Link,
-  Center,
+  Image,
 } from "@chakra-ui/react";
 
 export default function Landing() {
@@ -29,17 +29,18 @@ export default function Landing() {
             as={Box}
             textAlign={"center"}
             spacing={{ base: 8, md: 14 }}
-            py={{ base: 20, md: 36 }}
+            py={{ base: 15, md: 32 }}
           >
+            <Image alignSelf={"center"} src="./baby.png" w={300} h={250} />
             <Heading
               fontWeight={600}
               fontSize={{ base: "2xl", sm: "4xl", md: "6xl" }}
               lineHeight={"110%"}
               color={useColorModeValue("gray.700", "gray,300")}
             >
-              Test your suitable <br />
+              Assess your current <br />
               <Text as={"span"} color={"orange.400"}>
-                Mode of Delivery (MOD) & Gestational Age (GA)
+                Maternal & Fetus Health
               </Text>
             </Heading>
             <Text color={"gray.500"}>

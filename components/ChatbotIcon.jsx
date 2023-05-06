@@ -24,10 +24,11 @@ export default function ChatBotIcon() {
       <Popover isLazy>
         <PopoverTrigger>
           <IconButton
+            shadow={"lg"}
             icon={<MdChatBubble />}
-            size={"sm"}
+            size={"lg"}
             colorScheme={"orange"}
-            bg={"orange.400"}
+            bg={"orange.300"}
             variant="solid"
             position="fixed"
             bottom="20px"

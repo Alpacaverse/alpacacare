@@ -39,6 +39,24 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
       messages: [...prev.messages, botMessage],
     }));
   };
+  const handleDoctor = () => {
+    const botMessage = createChatBotMessage(
+      "Do you wish to proceed with online consultation? RM150 would be charged to your card."
+    );
+
+    setState((prev) => ({
+      ...prev,
+      messages: [...prev.messages, botMessage],
+    }));
+  };
+  const handlePayment = () => {
+    const botMessage = createChatBotMessage("Payment sucess.");
+
+    setState((prev) => ({
+      ...prev,
+      messages: [...prev.messages, botMessage],
+    }));
+  };
   return (
     <div>
       {React.Children.map(children, (child) => {
@@ -48,6 +66,8 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
             handleDepression,
             handleDiet,
             handleMedicalQueries,
+            handleDoctor,
+            handlePayment,
           },
         });
       })}

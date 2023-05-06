@@ -1,5 +1,6 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import ChatBotIcon from "../components/ChatbotIcon";
 import {
   FormControl,
   FormLabel,
@@ -108,6 +109,7 @@ export default function MaternalForm() {
       <Box position="fixed" bottom="0" width="100%">
         <Footer />
       </Box>
+      <ChatBotIcon />
     </>
   );
 }

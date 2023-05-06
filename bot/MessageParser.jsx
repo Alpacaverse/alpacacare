@@ -11,6 +11,10 @@ const MessageParser = ({ children, actions }) => {
       actions.handleDepression();
     } else if (message.includes("diet")) {
       actions.handleDiet();
+    } else if (message.includes("doctor")) {
+      actions.handleDoctor();
+    } else if (message.includes("yes")) {
+      actions.handlePayment();
     }
   };
 

@@ -102,7 +102,7 @@ export default function Report() {
         <Box p={6}>
           <Heading size="xl" my={6} color={"orange.400"}>
             Specialist{" "}
-            <Box as={"span"} color={"blackAlpha.600"}>
+            <Box as={"span"} color={useColorModeValue("black", "white")}>
               Services
             </Box>{" "}
           </Heading>
@@ -125,7 +125,7 @@ export default function Report() {
 
           <Heading size="xl" my={6} color={"orange.400"}>
             Food{" "}
-            <Box as={"span"} color={"blackAlpha.600"}>
+            <Box as={"span"} color={useColorModeValue("black", "white")}>
               Packages
             </Box>{" "}
           </Heading>
@@ -144,7 +144,7 @@ export default function Report() {
 
           <Heading size="xl" my={6} color={"orange.400"}>
             Dietary{" "}
-            <Box as={"span"} color={"blackAlpha.600"}>
+            <Box as={"span"} color={useColorModeValue("black", "white")}>
               Supplements
             </Box>{" "}
           </Heading>
@@ -162,8 +162,8 @@ export default function Report() {
           </Stack>
         </Box>
       </Center>
-      <Footer />
       <ChatBotIcon />;
+      <Footer />
     </>
   );
 }

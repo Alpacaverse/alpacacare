@@ -85,6 +85,7 @@ export default function Report() {
               objectFit="cover"
               maxW={{ base: "100%", sm: "500px" }}
               src={riskData[riskLevel]["img"]}
+              alt={""}
             />
 
             <Stack>
@@ -144,8 +145,8 @@ export default function Report() {
           </Stack>
         </Box>
       </Center>
+      <ChatBotIcon />
       <Footer />
-      <ChatBotIcon />;
     </>
   );
 }

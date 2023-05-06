@@ -15,23 +15,36 @@ import {
 } from "@chakra-ui/react";
 import { useState, useRef, useEffect } from "react";
 import { MdOutlineUploadFile } from "react-icons/md";
-import { useReportStore, usePremiumUserStore } from "../stores";
-const utils = require("../lib/utils");
+import {
+  useReportStore,
+  usePremiumUserStore,
+  useModelOutputStore,
+} from "../stores";
+const apiHelper = require("../lib/apiHelper");
 
 export default function ReportForm() {
+  const [isLoading, setIsLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [trialUsed, setTrialUsed] = usePremiumUserStore((state) => [
     state.trialUsed,
     state.setTrialUsed,
   ]);
-  const [inputFields, setReportData, fileInput, setFileInput] = useReportStore(
-    (state) => [
-      state.inputFields,
-      state.setReportData,
-      state.fileInput,
-      state.setFileInput,
-    ]
+  const [gaData, modData, setGaData, setModData] = useModelOutputStore(
+    (state) => [state.gaData, state.modData, state.setGaData, state.setModData]
   );
+  const [
+    inputFields,
+    setReportData,
+    fileInput,
+    setFileInput,
+    formattedReportData,
+  ] = useReportStore((state) => [
+    state.inputFields,
+    state.setReportData,
+    state.fileInput,
+    state.setFileInput,
+    state.formattedReportData,
+  ]);
 
   const fileInputRef = useRef(null);
 
@@ -49,7 +62,7 @@ export default function ReportForm() {
     };
   };
 
-  function handleSubmit() {
+  async function handleSubmit() {
     if (trialUsed) {
       setIsModalOpen(true);
       return;
@@ -62,8 +75,9 @@ export default function ReportForm() {
       const val = document.getElementById(element.id).value;
       data[element.id] = val;
     });
+
     setReportData(data);
-    window.location.href = "/report";
+    setIsLoading(true);
   }
 
   useEffect(() => {
@@ -73,6 +87,25 @@ export default function ReportForm() {
       }
     }
   }, [fileInput]);
+
+  useEffect(() => {
+    if (formattedReportData) {
+      apiHelper
+        .gestationalAgePrediction(formattedReportData)
+        .then((res) => setGaData(res.prediction));
+
+      apiHelper
+        .deliveryModePrediction(formattedReportData)
+        .then((res) => setModData(res.prediction));
+    }
+  }, [formattedReportData, setGaData, setModData]);
+
+  useEffect(() => {
+    if (gaData || modData) {
+      setIsLoading(false);
+      window.location.href = "/report";
+    }
+  }, [gaData, modData]);
 
   return (
     <>
@@ -147,6 +180,7 @@ export default function ReportForm() {
               bg: "orange.300",
             }}
             onClick={handleSubmit}
+            isLoading={isLoading}
           >
             Submit
           </Button>

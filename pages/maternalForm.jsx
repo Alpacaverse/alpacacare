@@ -14,12 +14,7 @@ import {
   Box,
 } from "@chakra-ui/react";
 import { useState, useRef, useEffect } from "react";
-import { MdOutlineUploadFile } from "react-icons/md";
-import {
-  useMaternalStore,
-  usePremiumUserStore,
-  useModelOutputStore,
-} from "../stores";
+import { useMaternalStore, usePremiumUserStore } from "../stores";
 const apiHelper = require("../lib/apiHelper");
 
 export default function MaternalForm() {
@@ -29,10 +24,7 @@ export default function MaternalForm() {
     state.trialUsed,
     state.setTrialUsed,
   ]);
-  const [diaData, setDiaData] = useModelOutputStore((state) => [
-    state.diaData,
-    state.setDiaData,
-  ]);
+
   const [inputFields, setMaternalData, maternalInput, maternalData] =
     useMaternalStore((state) => [
       state.inputFields,
@@ -42,10 +34,6 @@ export default function MaternalForm() {
     ]);
 
   const fileInputRef = useRef(null);
-
-  const handleButtonClick = () => {
-    fileInputRef.current.click();
-  };
 
   async function handleSubmit() {
     if (trialUsed) {
@@ -73,20 +61,17 @@ export default function MaternalForm() {
     }
   }, [maternalInput]);
 
-  useEffect(() => {
-    if (maternalData) {
-      apiHelper
-        .gestationalAgePrediction(maternalData)
-        .then((res) => setDiaData(res.prediction));
-    }
-  }, [setDiaData]);
-
-  useEffect(() => {
-    if (diaData) {
-      setIsLoading(false);
-      window.location.href = "/report";
-    }
-  }, [diaData]);
+  //   change api helper function
+  //   useEffect(() => {
+  //     let riskData;
+  //     if (maternalData) {
+  //       apiHelper
+  //         .gestationalAgePrediction(maternalData)
+  //         .then((res) => (riskData = res.prediction))
+  //         .then(() => setIsLoading(false))
+  //         .then(() => (window.location.href = `/maternalReport?=${riskData}`));
+  //     }
+  //   }, [maternalData]);
 
   return (
     <>

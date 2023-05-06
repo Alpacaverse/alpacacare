@@ -57,7 +57,7 @@ export default function Header() {
             </Box>
             <HStack
               as={"nav"}
-              spacing={4}
+              spacing={10}
               display={{ base: "none", md: "flex" }}
             >
               <Menu>

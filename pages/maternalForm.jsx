@@ -1,8 +1,6 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import PremiumModal from "../components/modal/PremiumModal";
 import {
-  Form,
   FormControl,
   FormLabel,
   Input,
@@ -12,36 +10,20 @@ import {
   Select,
   Center,
   Box,
+  GridItem,
 } from "@chakra-ui/react";
-import { useState, useRef, useEffect } from "react";
-import { useMaternalStore, usePremiumUserStore } from "../stores";
+import { useState, useEffect } from "react";
+import { useMaternalStore } from "../stores";
 const apiHelper = require("../lib/apiHelper");
 
 export default function MaternalForm() {
   const [isLoading, setIsLoading] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [trialUsed, setTrialUsed] = usePremiumUserStore((state) => [
-    state.trialUsed,
-    state.setTrialUsed,
-  ]);
 
-  const [inputFields, setMaternalData, maternalInput, maternalData] =
-    useMaternalStore((state) => [
-      state.inputFields,
-      state.setMaternalData,
-      state.maternalInput,
-      state.maternalData,
-    ]);
-
-  const fileInputRef = useRef(null);
+  const [inputFields, maternalData, setMaternalData] = useMaternalStore(
+    (state) => [state.inputFields, state.maternalData, state.setMaternalData]
+  );
 
   async function handleSubmit() {
-    if (trialUsed) {
-      setIsModalOpen(true);
-      return;
-    } else {
-      setTrialUsed(true);
-    }
     const data = {};
     // foreach id of inputFields.label == element id, get value and return
     inputFields.forEach((element) => {
@@ -54,32 +36,19 @@ export default function MaternalForm() {
   }
 
   useEffect(() => {
-    if (maternalInput) {
-      for (const key in maternalInput) {
-        document.getElementById(key).value = maternalInput[key];
-      }
+    let score;
+    if (maternalData && maternalData !== {}) {
+      apiHelper
+        .healthRiskPrediction(maternalData)
+        .then((res) => (score = res.prediction))
+        .then(() => setIsLoading(false))
+        .then(() => (window.location.href = `/maternalReport?score=${score}`));
     }
-  }, [maternalInput]);
-
-  //   change api helper function
-  //   useEffect(() => {
-  //     let riskData;
-  //     if (maternalData) {
-  //       apiHelper
-  //         .gestationalAgePrediction(maternalData)
-  //         .then((res) => (riskData = res.prediction))
-  //         .then(() => setIsLoading(false))
-  //         .then(() => (window.location.href = `/maternalReport?=${riskData}`));
-  //     }
-  //   }, [maternalData]);
+  }, [maternalData]);
 
   return (
     <>
       <Header />
-      <PremiumModal
-        isOpen={isModalOpen}
-        isClose={() => setIsModalOpen(false)}
-      />
       <Box p={15}>
         <Center>
           <Grid
@@ -88,10 +57,15 @@ export default function MaternalForm() {
             my={4}
             w={"90%"}
           >
-            <Text fontWeight={"semibold"} fontSize={"5xl"} color={"orange.400"}>
-              Maternal Assessment{" "}
-            </Text>
-            <Text></Text>
+            <GridItem colSpan={2}>
+              <Text
+                fontWeight={"semibold"}
+                fontSize={"5xl"}
+                color={"orange.400"}
+              >
+                Maternal Assessment{" "}
+              </Text>
+            </GridItem>
             {inputFields.map((field) => {
               return field.options ? (
                 <FormControl key={field.id} id={field.id}>

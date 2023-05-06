@@ -28,9 +28,7 @@ export const useMaternalStore = create((set) => ({
     },
   ],
   maternalInput: null,
-  maternalData: {},
+  maternalData: null,
   setMaternalInput: (x) => set({ maternalInput: x }),
-  setMaternalData: (x) => {
-    set({ maternalData: x });
-  },
+  setMaternalData: (x) => set({ maternalData: x }),
 }));

@@ -16,7 +16,7 @@ import {
   ModalBody,
   ModalCloseButton,
 } from "@chakra-ui/react";
-import { useEffect } from "react";
+
 import { FaCheckCircle } from "react-icons/fa";
 
 function PriceWrapper(props) {
@@ -94,7 +94,7 @@ export default function PremiumModal(props) {
                     >
                       <ListItem>
                         <ListIcon as={FaCheckCircle} color="green.500" />2
-                        doctor appointments /month
+                        specialist appointments
                       </ListItem>
                       <ListItem>
                         <ListIcon as={FaCheckCircle} color="green.500" />
@@ -148,7 +148,7 @@ export default function PremiumModal(props) {
                           RM
                         </Text>
                         <Text fontSize="5xl" fontWeight="900">
-                          350
+                          450
                         </Text>
                         <Text fontSize="3xl" color="orange.400">
                           /month
@@ -168,7 +168,7 @@ export default function PremiumModal(props) {
                       >
                         <ListItem>
                           <ListIcon as={FaCheckCircle} color="green.500" />2
-                          doctor appointments /month
+                          specialist appointments
                         </ListItem>
                         <ListItem>
                           <ListIcon as={FaCheckCircle} color="green.500" />
@@ -179,12 +179,12 @@ export default function PremiumModal(props) {
                           Ad-free experience
                         </ListItem>
                         <ListItem>
-                          <ListIcon as={FaCheckCircle} color="green.500" />3
-                          Ready-to-eat meals a day
+                          <ListIcon as={FaCheckCircle} color="green.500" />2
+                          ready-to-eat meals a day
                         </ListItem>
                         <ListItem>
                           <ListIcon as={FaCheckCircle} color="green.500" />1
-                          toddler accessory per month
+                          free bottle of supplement
                         </ListItem>
                       </List>
                       <Box w="80%" pt={7}>
@@ -230,7 +230,7 @@ export default function PremiumModal(props) {
                     >
                       <ListItem>
                         <ListIcon as={FaCheckCircle} color="green.500" />4
-                        doctor appointments /month
+                        specialist appointments
                       </ListItem>
                       <ListItem>
                         <ListIcon as={FaCheckCircle} color="green.500" />

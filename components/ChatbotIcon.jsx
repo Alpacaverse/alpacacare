@@ -24,6 +24,7 @@ export default function ChatBotIcon() {
       <Popover isLazy>
         <PopoverTrigger>
           <IconButton
+            mb={5}
             shadow={"lg"}
             icon={<MdChatBubble />}
             size={"lg"}

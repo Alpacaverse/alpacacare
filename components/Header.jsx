@@ -75,6 +75,11 @@ export default function Header() {
                   </MenuItem>
                 </MenuList>
               </Menu>
+              <Link href="./services" passHref>
+                <Menu>
+                  <MenuButton fontWeight={"bold"}>Services</MenuButton>
+                </Menu>
+              </Link>
               <Text fontWeight={"bold"} onClick={() => setIsModalOpen(true)}>
                 Premium
               </Text>

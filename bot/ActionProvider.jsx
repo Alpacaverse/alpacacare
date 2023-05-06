@@ -21,7 +21,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
   };
   const handleDiet = () => {
     const botMessage = createChatBotMessage(
-      "It's important to have a balanced diet after pregnancy, which includes plenty of fruits, vegetables, lean protein, whole grains, and healthy fats."
+      "It's important to have a balanced diet during pregnancy, which includes plenty of fruits, vegetables, lean protein, whole grains, and healthy fats."
     );
 
     setState((prev) => ({

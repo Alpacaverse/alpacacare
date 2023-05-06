@@ -43,20 +43,12 @@ const NavLink = (props) => (
 );
 
 export default function Header() {
-  const { isOpen, onOpen, onClose } = useDisclosure();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <>
       <Box bg={useColorModeValue("orange.400", "orange.400")} px={4}>
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
-          <IconButton
-            size={"md"}
-            icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
-            aria-label={"Open Menu"}
-            display={{ md: "none" }}
-            onClick={isOpen ? onClose : onOpen}
-          />
           <HStack spacing={8} alignItems={"center"}>
             <Box>
               <Link href={"./"}>
@@ -68,14 +60,20 @@ export default function Header() {
               spacing={4}
               display={{ base: "none", md: "flex" }}
             >
-              {Links.map((link) => (
-                <NavLink
-                  key={link.page_name}
-                  page_name={link.page_name}
-                  source={link.source}
-                />
-              ))}
-              <Text onClick={() => setIsModalOpen(true)}>Premium</Text>
+              <Menu>
+                <MenuButton fontWeight={"bold"}>Health Assessment</MenuButton>
+                <MenuList>
+                  <MenuItem as="a" href="./maternalForm">
+                    Maternal Assessment
+                  </MenuItem>
+                  <MenuItem as="a" href="./reportForm">
+                    Fetus Assessment
+                  </MenuItem>
+                </MenuList>
+              </Menu>
+              <Text fontWeight={"bold"} onClick={() => setIsModalOpen(true)}>
+                Premium
+              </Text>
             </HStack>
 
             <PremiumModal
@@ -83,45 +81,29 @@ export default function Header() {
               isClose={() => setIsModalOpen(false)}
             />
           </HStack>
-          <Flex alignItems={"center"}>
-            <Menu>
-              <MenuButton
-                as={Button}
-                rounded={"full"}
-                variant={"link"}
-                cursor={"pointer"}
-                minW={0}
-                // onClick={handleClick}
-              >
-                <Avatar
-                  size={"sm"}
-                  src={
-                    "https://images.unsplash.com/photo-1520810627419-35e362c5dc07?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&ixid=eyJhcHBfaWQiOjE3Nzg0fQ"
-                  }
-                />
-              </MenuButton>
-              <MenuList>
-                <MenuItem>
-                  <UserProfile />
-                </MenuItem>
-              </MenuList>
-            </Menu>
-          </Flex>
+          <Menu>
+            <MenuButton
+              as={Button}
+              rounded={"full"}
+              variant={"link"}
+              cursor={"pointer"}
+              minW={0}
+              // onClick={handleClick}
+            >
+              <Avatar
+                size={"md"}
+                src={
+                  "https://images.unsplash.com/photo-1520810627419-35e362c5dc07?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&ixid=eyJhcHBfaWQiOjE3Nzg0fQ"
+                }
+              />
+            </MenuButton>
+            <MenuList>
+              <MenuItem>
+                <UserProfile />
+              </MenuItem>
+            </MenuList>
+          </Menu>
         </Flex>
-
-        {isOpen ? (
-          <Box pb={4} display={{ md: "none" }}>
-            <Stack as={"nav"} spacing={4}>
-              {Links.map((link) => (
-                <NavLink
-                  key={link.page_name}
-                  page_name={link.page_name}
-                  source={link.source}
-                />
-              ))}
-            </Stack>
-          </Box>
-        ) : null}
       </Box>
     </>
   );

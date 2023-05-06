@@ -4,6 +4,7 @@ import {
   Avatar,
   HStack,
   Link,
+  Text,
   IconButton,
   Button,
   Menu,
@@ -18,11 +19,12 @@ import {
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import UserProfile from "./UserProfile";
+import PremiumModal from "./modal/PremiumModal";
+import { useState } from "react";
 
 const Links = [
   // { page_name: "Dashboard", source: "./dashboard" },
-  { page_name: "Health Assessment", source: "./healthAssesment" },
-  { page_name: "Premium", source: "./premium" },
+  { page_name: "Report Generator", source: "./reportForm" },
 ];
 
 const NavLink = (props) => (
@@ -42,6 +44,7 @@ const NavLink = (props) => (
 
 export default function Header() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <>
@@ -72,7 +75,13 @@ export default function Header() {
                   source={link.source}
                 />
               ))}
+              <Text onClick={() => setIsModalOpen(true)}>Premium</Text>
             </HStack>
+
+            <PremiumModal
+              isOpen={isModalOpen}
+              isClose={() => setIsModalOpen(false)}
+            />
           </HStack>
           <Flex alignItems={"center"}>
             <Menu>

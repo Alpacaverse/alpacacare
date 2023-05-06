@@ -1,4 +1,4 @@
-import Head from 'next/head';
+import Head from "next/head";
 import {
   Box,
   Heading,
@@ -9,86 +9,98 @@ import {
   Icon,
   useColorModeValue,
   createIcon,
-} from '@chakra-ui/react';
+  Link,
+  Image,
+} from "@chakra-ui/react";
 
 export default function Landing() {
   return (
     <>
-      <Head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap"
-          rel="stylesheet"
-        />
-      </Head>
+      <Box bg={useColorModeValue("gray.100", "gray.700")}>
+        <Head>
+          <Link
+            href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap"
+            rel="stylesheet"
+          />
+        </Head>
 
-      <Container maxW={'3xl'}>
-        <Stack
-          as={Box}
-          textAlign={'center'}
-          spacing={{ base: 8, md: 14 }}
-          py={{ base: 20, md: 36 }}>
-          <Heading
-            fontWeight={600}
-            fontSize={{ base: '2xl', sm: '4xl', md: '6xl' }}
-            lineHeight={'110%'}>
-            Test your suitable <br />
-            <Text as={'span'} color={'orange.400'}>
-            Mode of Delivery (MOD) & Gestational Age (GA) 
-            </Text>
-          </Heading>
-          <Text color={'gray.500'}>
-            Upload your pregnacy reports, we will analyse and provide you with
-            the best suitable mode of delivery and your current gestational age.
-
-          </Text>
+        <Container maxW={"3xl"}>
           <Stack
-            direction={'column'}
-            spacing={3}
-            align={'center'}
-            alignSelf={'center'}
-            position={'relative'}>
-            <Button
-              colorScheme={'orange'}
-              bg={'orange.400'}
-              rounded={'full'}
-              px={6}
-              _hover={{
-                bg: 'orange.300',
-              }}>
-              Get Started
-            </Button>
-            <Button variant={'link'} colorScheme={'blue'} size={'sm'}>
-              Learn more
-            </Button>
-            <Box>
-              <Icon
-                as={Arrow}
-                color={useColorModeValue('gray.800', 'gray.300')}
-                w={71}
-                position={'absolute'}
-                right={-71}
-                top={'10px'}
-              />
-              <Text
-                fontSize={'lg'}
-                fontFamily={'Caveat'}
-                position={'absolute'}
-                right={'-125px'}
-                top={'-15px'}
-                transform={'rotate(10deg)'}>
-                Starting at RM200/mo
+            as={Box}
+            textAlign={"center"}
+            spacing={{ base: 8, md: 14 }}
+            py={{ base: 15, md: 32 }}
+          >
+            <Image alignSelf={"center"} src="./baby.png" w={300} h={250} />
+            <Heading
+              fontWeight={600}
+              fontSize={{ base: "2xl", sm: "4xl", md: "6xl" }}
+              lineHeight={"110%"}
+              color={useColorModeValue("gray.700", "gray,300")}
+            >
+              Assess your current <br />
+              <Text as={"span"} color={"orange.400"}>
+                Maternal & Fetus Health
               </Text>
-            </Box>
+            </Heading>
+            <Text color={"gray.500"}>
+              Upload your pregnacy reports, we will analyse and provide you with
+              the best suitable mode of delivery and your current gestational
+              age.
+            </Text>
+            <Stack
+              direction={"column"}
+              spacing={3}
+              align={"center"}
+              alignSelf={"center"}
+              position={"relative"}
+            >
+              <Button
+                colorScheme={"orange"}
+                bg={"orange.400"}
+                rounded={"full"}
+                px={6}
+                _hover={{
+                  bg: "orange.300",
+                }}
+              >
+                Get Started
+              </Button>
+              <Button variant={"link"} colorScheme={"blue"} size={"sm"}>
+                Learn more
+              </Button>
+              <Box>
+                <Icon
+                  as={Arrow}
+                  color={useColorModeValue("gray.800", "gray.300")}
+                  w={71}
+                  position={"absolute"}
+                  right={-71}
+                  top={"10px"}
+                />
+                <Text
+                  fontSize={"lg"}
+                  fontFamily={"Caveat"}
+                  position={"absolute"}
+                  right={"-125px"}
+                  top={"-15px"}
+                  transform={"rotate(10deg)"}
+                  color={useColorModeValue("gray.700", "gray,300")}
+                >
+                  Starting at RM200/mo
+                </Text>
+              </Box>
+            </Stack>
           </Stack>
-        </Stack>
-      </Container>
+        </Container>
+      </Box>
     </>
   );
 }
 
 const Arrow = createIcon({
-  displayName: 'Arrow',
-  viewBox: '0 0 72 24',
+  displayName: "Arrow",
+  viewBox: "0 0 72 24",
   path: (
     <path
       fillRule="evenodd"

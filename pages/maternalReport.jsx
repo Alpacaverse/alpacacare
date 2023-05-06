@@ -54,9 +54,9 @@ export default function Report() {
   const router = useRouter();
   const riskData = riskIndi();
 
-  const { risk } = router.query;
+  const { score } = router.query;
   const riskLevel =
-    parseInt(risk) === 0 ? "Low" : parseInt(risk) === 1 ? "Medium" : "High";
+    parseInt(score) === 0 ? "Low" : parseInt(score) === 1 ? "Medium" : "High";
 
   return (
     <>

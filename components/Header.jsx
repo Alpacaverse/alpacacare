@@ -38,6 +38,7 @@ export default function Header() {
               as={"nav"}
               spacing={10}
               display={{ base: "none", md: "flex" }}
+              color={useColorModeValue("black", "white")}
             >
               <Link href="./">
                 <Menu>

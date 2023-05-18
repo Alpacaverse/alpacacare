@@ -11,7 +11,7 @@ import {
   PopoverArrow,
 } from "@chakra-ui/react";
 import { MdChatBubble } from "react-icons/md";
-import ChatBot from "../pages/chatbot";
+import ChatBotComponent from "./ChatbotComponent";
 
 export default function ChatBotIcon() {
   const [isOpen, setIsOpen] = useState(false);
@@ -38,7 +38,7 @@ export default function ChatBotIcon() {
         </PopoverTrigger>
         <PopoverContent width={"95%"}>
           {/* <PopoverBody> */}
-          <ChatBot />
+          <ChatBotComponent />
           {/* </PopoverBody> */}
         </PopoverContent>
       </Popover>

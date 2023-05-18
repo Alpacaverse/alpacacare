@@ -16,7 +16,7 @@ import config from "../bot/config.js";
 import MessageParser from "../bot/MessageParser.jsx";
 import ActionProvider from "../bot/ActionProvider.jsx";
 
-export default function ChatBot() {
+export default function ChatBotComponent() {
   return (
     <Center width={"100%"}>
       <Chatbot
